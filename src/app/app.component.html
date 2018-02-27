@@ -1,11 +1,4 @@
-<h1>Disciplinas</h1>
-<hr>
-<ul>
-  <li *ngFor="let disciplina of disciplinas" (click)="selecionar(disciplina)">
-      <p [class.selecionado]="selecionado == disciplina">{{disciplina.nome}}</p>
-      <p *ngIf="selecionado == disciplina">{{disciplina.descricao}}</p>
-  </li>
-</ul>
+
 
 
 <table class="table table-bordered table-striped">
@@ -21,11 +14,54 @@
         <th scope="row">{{disciplina.cod}}</th>
         <td>{{disciplina.nome}}</td>
         <td>
-          <button class="btn btn-danger btn-sm" (click)="excluir(turma)">
-            <i class="fa fa-trash"></i>
-          </button>
+            <button class="btn btn-sm btn-primary" (click)="selecionar(disciplina)">
+                <i class="fa fa-pencil-square"></i> Detalhes
+            </button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <h1>Disciplina </h1>
+
+  <table class="table table-bordered table-striped" *ngIf="selecionado != disciplina">
+      <thead class="thead-dark">
+        <tr>
+
+          <th scope="col">Campos</th>
+          <th scope="col">Dados</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <th >Nome</th> {{selecionado.nome}}
+            
+
+
+
+        </tr>
+        <tr>
+            <th>Professor: 
+              
+            </th>{{selecionado.professor.nome}}
+
+        </tr>
+        <tr>
+
+            <th>Descrição: </th> {{selecionado.descricao}}
+
+
+        </tr>
+      </tbody>
+    </table>
+  
+
+
+
+
+
+
+
+
 
