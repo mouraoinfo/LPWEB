@@ -1,7 +1,7 @@
 
 
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped table-hover">
     <thead class="thead-dark">
       <tr>
         <th scope="col" width="80">Código</th>
@@ -22,9 +22,9 @@
     </tbody>
   </table>
 
-  <h1>Disciplina </h1>
+  <h1 *ngIf="selecionado != disciplina">Disciplina </h1>
 
-  <table class="table table-bordered table-striped" *ngIf="selecionado != disciplina">
+  <table class="table table-bordered table-striped table-sm" *ngIf="selecionado != disciplina">
       <thead class="thead-dark">
         <tr>
 
