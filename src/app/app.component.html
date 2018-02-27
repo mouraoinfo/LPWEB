@@ -6,3 +6,26 @@
       <p *ngIf="selecionado == disciplina">{{disciplina.descricao}}</p>
   </li>
 </ul>
+
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" width="80">Código</th>
+        <th scope="col">Disciplina</th>
+        <th scope="col" width="50">Detalhes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let disciplina of disciplinas">
+        <th scope="row">{{disciplina.cod}}</th>
+        <td>{{disciplina.nome}}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="excluir(turma)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
