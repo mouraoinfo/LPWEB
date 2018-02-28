@@ -9,6 +9,7 @@ import { Professor } from './professor.model';
 })
 export class AppComponent {
   selecionado = null;
+  disciplina = null;
   disciplinas = [
     new Disciplina('01', 'Língua Portuguesa', 'O objetivo norteador da BNCC de Língua Portuguesa ' +
       'é garantir a todos os alunos o acesso aos saberes linguísticos necessários para a ' +
