@@ -1,15 +1,16 @@
 import { Professor } from './professor.model';
 
 export class Disciplina {
-    cod: string;
+    codigo: number;
     nome: string;
-    descricao: string;
     professor: Professor;
+    descricao: string;
 
-    constructor(cod: string, nome: string, descricao?: string, professor?: Professor) {
-      this.cod = cod;
+    constructor(codigo: number, nome: string, professor?: Professor, descricao?: string) {
+      this.codigo = codigo;
       this.nome = nome;
-      this.descricao = descricao;
       this.professor = professor;
+      this.descricao = descricao;
+
     }
 }

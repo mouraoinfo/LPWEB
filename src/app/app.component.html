@@ -1,17 +1,17 @@
 
-
+<h1>Informações sobre as disciplinas</h1>
 
 <table class="table table-bordered table-striped table-hover">
     <thead class="thead-dark">
       <tr>
         <th scope="col" width="80">Código</th>
-        <th scope="col">Disciplina</th>
+        <th scope="col">Nome</th>
         <th scope="col" width="50">Detalhes</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let disciplina of disciplinas">
-        <th scope="row">{{disciplina.cod}}</th>
+        <th scope="row">{{disciplina.codigo}}</th>
         <td>{{disciplina.nome}}</td>
         <td>
             <button class="btn btn-sm btn-primary" (click)="selecionar(disciplina)">
@@ -22,7 +22,12 @@
     </tbody>
   </table>
 
-  <h1 *ngIf="selecionado != disciplina">Disciplina </h1>
+  <h1 *ngIf="selecionado != disciplina">
+    Detalhamento da disciplina: {{selecionado.codigo}} - {{selecionado.nome}} 
+      <button class="btn btn-sm btn-primary" (click)="ocultar(disciplina)">
+        <i class="fa fa-pencil-square"></i> Ocultar
+      </button>
+  </h1>
 
   <table class="table table-bordered table-striped table-sm" *ngIf="selecionado != disciplina">
       <thead class="thead-dark">
@@ -33,10 +38,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-            <th >Nome</th> {{selecionado.nome}}
-            
-        </tr>
+
         <tr>
             <th>Professor  </th> {{selecionado.professor.nome}}
 
