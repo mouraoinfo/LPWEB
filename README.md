@@ -1,27 +1,8 @@
 # Lista
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
+Este é um projeto da disciplina Linguagem de Programação Web, ministrada pelo professor Jackson Gomes.
+Para visualizar os diferentes branches em produção, basta visitar o site http://mourao.info/lpweb/
 
-## Development server
+Pra entrar em contato comigo busque por @mouraoinfo nas redes sociais ou então por email: marcos@mourao.info
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Na primeira versão do trabalho, o professor solicitou que fosse criada uma lista de disciplinas e a opção de ver detalhamento das informações de cada uma.
