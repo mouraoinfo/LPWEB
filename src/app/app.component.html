@@ -1,4 +1,5 @@
 
+
 <h1 align = 'center'>Lista de disciplinas</h1>
 
 <table class="table table-bordered table-striped table-hover">
@@ -22,12 +23,14 @@
     </tbody>
   </table>
 
-  <h1 *ngIf="selecionado != disciplina">
+
+  <div  *ngIf="selecionado != disciplina" class="alert alert-warning alert-dismissible fade show" role="alert">
     Detalhamento da disciplina: {{selecionado.codigo}} - {{selecionado.nome}} 
-      <button class="btn btn-sm btn-primary" (click)="ocultar(disciplina)">
-        <i class="fa fa-pencil-square"></i> Ocultar
-      </button>
-  </h1>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"(click)="ocultar(disciplina)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
 
   <table class="table table-bordered table-striped table-sm" *ngIf="selecionado != disciplina">
       <thead class="thead-dark">
@@ -50,13 +53,13 @@
         </tr>
       </tbody>
     </table>
-  
+
+    
 
 
-
-
-
-
+    <div class="alert alert-secondary" role="alert">
+      <h6 align = 'center'> Projeto LPWEB versão: 01</h6>
+    </div>
 
 
 
