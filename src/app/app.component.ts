@@ -65,7 +65,7 @@ export class AppComponent {
       'Essas aprendizagens, entre outras, possibilitam que os alunos compreendam, ' +
       'expliquem e intervenham no mundo em que vivem.')
   ];
-
+    ultimocodigo = this.disciplinas.length;
 
   salvar() {
     if (this.editando) {
@@ -74,8 +74,8 @@ export class AppComponent {
       this.editando.professor.nome = this.nomeprof;
 
     } else {
-      const cod = this.disciplinas.length + 1;
-      const d = new Disciplina(cod, this.nome, new Professor(this.nomeprof), this.descricao);
+      this.ultimocodigo = this.ultimocodigo + 1;
+      const d = new Disciplina(this.ultimocodigo, this.nome, new Professor(this.nomeprof), this.descricao);
       this.disciplinas.push(d);
     }
     this.nomeprof = null;
