@@ -8,8 +8,21 @@ import { Professor } from './professor.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  /* Dados de uma disciplina*/
+  nomeprof = null;
+  nome = null;
+  descricao = null;
+
+  adicionando = false;
+
+
   selecionado = null;
   disciplina = null;
+  editando = null;
+  mostrando = false;
+
+
+
   disciplinas = [
     new Disciplina( 1, 'Língua Portuguesa', new Professor('Jackson'), 'O objetivo norteador da BNCC de Língua Portuguesa ' +
       'é garantir a todos os alunos o acesso aos saberes linguísticos necessários para a ' +
@@ -53,12 +66,60 @@ export class AppComponent {
       'expliquem e intervenham no mundo em que vivem.')
   ];
 
-  selecionar(disciplina) {
-    this.selecionado = disciplina;
+
+  salvar() {
+    if (this.editando) {
+      this.editando.nome = this.nome;
+      this.editando.descricao = this.descricao;
+      this.editando.professor.nome = this.nomeprof;
+
+    } else {
+      const cod = this.disciplinas.length + 1;
+      const d = new Disciplina(cod, this.nome, new Professor(this.nomeprof), this.descricao);
+      this.disciplinas.push(d);
+    }
+    this.nomeprof = null;
+    this.nome = null;
+    this.descricao = null;
+    this.editando = null;
   }
 
-  ocultar(disciplina) {
-    this.selecionado = null;
+  excluir(disciplina) {
+    if (this.editando === disciplina) {
+      alert('Você não pode excluir uma disciplina que está editando');
+    } else {
+      if (confirm('Tem certeza que deseja excluir a disciplina "'
+          + disciplina.nome + '"?')) {
+        const i = this.disciplinas.indexOf(disciplina);
+        this.disciplinas.splice(i, 1);
+      }
+    }
   }
+
+  editar(disciplina) {
+    this.nome = disciplina.nome;
+    this.descricao = disciplina.descricao;
+    this.editando = disciplina;
+    this.nomeprof = this.editando.professor.nome;
+    this.adicionando = true;
+  }
+
+  cancelar() {
+    this.nomeprof =  null;
+    this.nome = null;
+    this.descricao = null;
+    this.editando = null;
+    this.adicionando = false;
+
+  }
+
+  adicionar() {
+    this.adicionando = true;
+  }
+
+  naoadicionar() {
+    this.adicionando = false;
+  }
+
 
 }

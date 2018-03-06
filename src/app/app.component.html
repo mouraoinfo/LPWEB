@@ -1,65 +1,101 @@
 
+<head>
+  <title>Google Icons</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
 
-<h1 align = 'center'>Lista de disciplinas</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><h1>Disciplinas</h1></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+   
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+       <button type="button" class="btn btn-outline-primary"  (click)="adicionar()" ><i class="material-icons"  >add_circle</i> Disciplina</button>
+    </form>
+  </div>
+</nav>
+
+
+
+
+
 
 <table class="table table-bordered table-striped table-hover">
     <thead class="thead-dark">
       <tr>
         <th scope="col" width="80">Código</th>
         <th scope="col">Nome</th>
-        <th scope="col" width="50">Detalhes</th>
+        <th scope="col" width="300">Ações</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let disciplina of disciplinas">
+      <tr *ngFor="let disciplina of disciplinas" >
         <th scope="row">{{disciplina.codigo}}</th>
-        <td>{{disciplina.nome}}</td>
         <td>
-            <button class="btn btn-sm btn-primary" (click)="selecionar(disciplina)">
-                <i class="fa fa-pencil-square"></i> Detalhes
+          {{disciplina.nome}}
+          <div  *ngIf="selecionado == disciplina"  > Professor: {{selecionado.professor.nome}} <br>
+                Detalhe: {{selecionado.descricao}} 
+          </div>  
+        </td>
+        <td>
+
+            <button  class="btn btn-sm btn-primary" (click)="editar(disciplina)" >
+              <i class="fa fa-pencil-square"></i> <i class="material-icons">mode_edit</i> 
             </button>
+
+           <button class="btn btn-sm btn-primary" (click)="excluir(disciplina)">
+             <i class="material-icons">delete_sweep</i>
+           </button>
         </td>
       </tr>
     </tbody>
   </table>
 
 
-  <div  *ngIf="selecionado != disciplina" class="alert alert-warning alert-dismissible fade show" role="alert">
-    Detalhamento da disciplina: {{selecionado.codigo}} - {{selecionado.nome}} 
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"(click)="ocultar(disciplina)">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+<div *ngIf="adicionando == true"  >
+  <h2>Cadastrar Disciplina</h2>
+  <p>Use este formulário para cadastrar ou editar uma disciplina.</p>
+  <form #cadastro="ngForm" (submit)="salvar()">
+
+      <div>
+          <label for="nomeprof">Professor(a)</label><br>
+          <input type="text" id="nomeprof" name="nomeprof" [(ngModel)]="nomeprof" required>
+      </div>
+      <div>
+          <label for="nome">Disciplina</label><br>
+          <input type="text" id="nome" name="nome" [(ngModel)]="nome" required>
+      </div>
+
+      <div>
+          <label for="descricao">Descrição</label><br>
+          <textarea id="descricao" name="descricao" [(ngModel)]="descricao"
+                    cols="70" rows="5"></textarea>
+      </div>
+      <button type="submit" [disabled]="!cadastro.valid">Salvar</button>
+      <button type="reset" (click)="cancelar()">Cancelar</button>
+  </form>
 
 
-  <table class="table table-bordered table-striped table-sm" *ngIf="selecionado != disciplina">
-      <thead class="thead-dark">
-        <tr>
-
-
-
-        </tr>
-      </thead>
-      <tbody>
-
-        <tr>
-            <th>Professor  </th> {{selecionado.professor.nome}}
-
-        </tr>
-        <tr>
-
-            <th>Descrição </th> {{selecionado.descricao}}
-
-        </tr>
-      </tbody>
-    </table>
-
-    
+</div>
 
 
     <div class="alert alert-secondary" role="alert">
-      <h6 align = 'center'> Projeto LPWEB versão: 01</h6>
+      <h6 align = 'center'> Projeto LPWEB versão: 02</h6>
     </div>
+
+
+
+    
 
 
 
