@@ -3,6 +3,7 @@
   <title>Google Icons</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,14 +21,10 @@
 
     </ul>
     <form class="form-inline my-2 my-lg-0">
-       <button  data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-outline-primary"  (click)="adicionar()" ><i class="material-icons"  >add_circle</i> Disciplina</button>
+       <button type="button" class="btn btn-outline-primary"  (click)="adicionar()" ><i class="material-icons"  >add_circle</i> Disciplina</button>
     </form>
   </div>
 </nav>
-
-
-teste
-
 
 
 <table class="table table-bordered table-striped table-hover">
@@ -43,13 +40,16 @@ teste
         <th scope="row">{{disciplina.codigo}}</th>
         <td>
           {{disciplina.nome}}
-          <div  *ngIf="selecionado == disciplina"  > Professor: {{selecionado.professor.nome}} <br>
-                Detalhe: {{selecionado.descricao}} 
-          </div>  
         </td>
         <td>
 
-            <button  data-toggle="modal" data-target="#exampleModal" class="btn btn btn-primary" (click)="editar(disciplina)" >
+          
+
+          <button  data-toggle="modal" data-target="#exampleModal" class="btn btn-info" (click)="editar(disciplina)" (click)="naoadicionar()"  >
+            <i class="material-icons">zoom_in</i>
+          </button>
+
+            <button class="btn btn btn-primary" (click)="editar(disciplina)" >
               <i class="fa fa-pencil-square"></i> <i class="material-icons">mode_edit</i> 
             </button>
 
@@ -105,7 +105,7 @@ teste
   
         <div class="modal-header">
   
-          <h5 class="modal-title">Visualizando {{nome1}}</h5>
+          <h5 class="modal-title">Detalhes </h5>
   
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelar()">
   
@@ -116,17 +116,9 @@ teste
         </div>
   
         <div class="modal-body">
-  
-          <p>
-  
-            <b>Codigo:</b> {{cod1}}<br>
-  
-            <b>Nome:</b> {{nome1}}<br>
-  
-            <b>Descricao:</b> {{descricao1}}
-  
-          </p>
-  
+            <h5>Professor:</h5> {{nomeprof}}<p>
+            <h5>Disciplina:</h5> {{nome}}<p>
+            <h5> Descrição: </h5><p> {{descricao}}<p>        
         </div>
   
         <div class="modal-footer">
