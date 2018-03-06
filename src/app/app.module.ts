@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { ModalService } from 'ng-bootstrap-modal';
+import { ModalModule } from 'ng-bootstrap-modal';
+
 
 
 
