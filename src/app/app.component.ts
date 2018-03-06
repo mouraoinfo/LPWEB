@@ -82,6 +82,7 @@ export class AppComponent {
     this.nome = null;
     this.descricao = null;
     this.editando = null;
+    this.cancelar();
   }
 
   excluir(disciplina) {
