@@ -45,10 +45,6 @@
 
           
 
-          <button  data-toggle="modal" data-target="#exampleModal" class="btn btn-info" (click)="editar(disciplina)" (click)="naoadicionar()"  >
-            <i class="material-icons">zoom_in</i>
-          </button>
-
             <button class="btn btn btn-primary" (click)="editar(disciplina)" >
               <i class="fa fa-pencil-square"></i> <i class="material-icons">mode_edit</i> 
             </button>
@@ -56,6 +52,7 @@
            <button class="btn btn btn-primary"  class="btn btn-danger" (click)="excluir(disciplina)">
              <i class="material-icons">delete_sweep</i>
            </button>
+
         </td>
       </tr>
     </tbody>
@@ -66,24 +63,41 @@
 
 <div class="container">
   <div *ngIf="adicionando == true"  >
-    <h2>Cadastrar Disciplina</h2>
+    <h2>Gerenciar Disciplina</h2>
     <p>Use este formulário para cadastrar ou editar uma disciplina.</p>
     <form #cadastro="ngForm" (submit)="salvar()">
-  
-        <div>
-            <label for="nomeprof">Professor(a)</label><br>
-            <input type="text" id="nomeprof" name="nomeprof" [(ngModel)]="nomeprof" required>
+
+      <div>
+          Data Cadastro {{data}}
+     </div>
+
+     <div>
+      <label for="nome">Nome da Disciplina</label><br>
+      <input type="text" id="nome" name="nome" [(ngModel)]="nome" required>
+    </div>
+
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" checked>
+          <label class="form-check-label" for="exampleCheck1">Está ativa</label>
         </div>
+
         <div>
-            <label for="nome">Disciplina</label><br>
-            <input type="text" id="nome" name="nome" [(ngModel)]="nome" required>
-        </div>
+          <label for="tipo">Tipo </label><br>
+          <input type="text" id="tipo" name="tipo" [(ngModel)]="tipo" required>
+         </div>
   
         <div>
             <label for="descricao">Descrição</label><br>
             <textarea id="descricao" name="descricao" [(ngModel)]="descricao"
                       cols="70" rows="5"></textarea>
         </div>
+
+
+
+
+
+
   
         <button class="btn btn-sm btn-primary" class="btn btn-default" type="reset" (click)="cancelar()">Cancelar</button>
         <button class="btn btn-sm btn-primary"  type="submit" [disabled]="!cadastro.valid">Salvar</button>
@@ -96,39 +110,3 @@
 </div>
 
 
-
-<div class="modal" tabindex="-1" role="dialog" id="exampleModal" aria-labelledby="exampleModal" aria-hidden="true">
-
-    <div class="modal-dialog" role="document">
-  
-      <div class="modal-content">
-  
-        <div class="modal-header">
-  
-          <h5 class="modal-title">Detalhes </h5>
-  
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelar()">
-  
-            <span aria-hidden="true">&times;</span>
-  
-          </button>
-  
-        </div>
-  
-        <div class="modal-body">
-            <h5>Professor:</h5> {{nomeprof}}<p>
-            <h5>Disciplina:</h5> {{nome}}<p>
-            <h5> Descrição: </h5><p> {{descricao}}<p>        
-        </div>
-  
-        <div class="modal-footer">
-  
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancelar()">OK</button>
-  
-        </div>
-  
-      </div>
-  
-    </div>
-  
-  </div>
