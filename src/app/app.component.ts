@@ -9,6 +9,7 @@ import { Professor } from './professor.model';
 })
 export class AppComponent {
   /* Conjunto de variáveis básicas Dados de uma disciplina**/
+  codigo = null;
   nome = null;
   descricao = null;
   data = null;
@@ -48,6 +49,7 @@ export class AppComponent {
     }
 
 
+    this.codigo = null;
     this.nome = null;
     this.descricao = null;
     this.editando = null;
@@ -68,6 +70,7 @@ export class AppComponent {
 
   editar(disciplina) {
     /** replicar dados literais da disciplina a ser editada nas variáveis base*/
+    this.codigo = disciplina.codigo;
     this.nome = disciplina.nome;
     this.descricao = disciplina.descricao;
     this.data = disciplina.data;
@@ -83,6 +86,7 @@ export class AppComponent {
    * negar que está editando e adicionando
    */
   cancelar() {
+    this.codigo = null;
     this.nome = null;
     this.descricao = null;
     this.data = null;

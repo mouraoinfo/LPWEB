@@ -46,11 +46,11 @@
           
 
             <button class="btn btn btn-primary" (click)="editar(disciplina)" >
-              <i class="fa fa-pencil-square"></i> <i class="material-icons">mode_edit</i> 
+              <i class="fa fa-pencil-square"></i>  <i class="material-icons">mode_edit</i> Editar 
             </button>
 
            <button class="btn btn btn-primary"  class="btn btn-danger" (click)="excluir(disciplina)">
-             <i class="material-icons">delete_sweep</i>
+             <i class="material-icons">delete_sweep</i> Excluir
            </button>
 
         </td>
@@ -68,11 +68,12 @@
     <form #cadastro="ngForm" (submit)="salvar()">
 
       <div>
-          Data Cadastro {{data}}
+          Código: {{codigo}}  Nome: {{nome}}
+          Data: {{data}}
      </div>
 
      <div>
-      <label for="nome">Nome da Disciplina</label><br>
+      <label for="nome">Nome</label><br>
       <input type="text" id="nome" name="nome" [(ngModel)]="nome" required>
     </div>
 
