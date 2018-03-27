@@ -16,9 +16,11 @@ export class AppComponent {
   isAtiva = false;
   tipo = null;
   periodo = null;
-
-
-
+  disciplinas = [ ];
+  ultimocodigo = this.disciplinas.length;
+  salvar_ok = null;
+  editar_ok = null;
+  excluir_ok = null;
 
   /* Dados parâmetros para manipulação da disciplina**/
   adicionando = false;
@@ -28,13 +30,6 @@ export class AppComponent {
   mostrando = false;
 
 
-
-  disciplinas = [
-    new Disciplina( 1, 'Língua Portuguesa', 'O objetivo norteador da BNCC de Lín...', new Date(), true, true, '5'),
-
-  ];
-    ultimocodigo = this.disciplinas.length;
-
   salvar() {
     if (this.editando) {
       this.editando.nome = this.nome;
@@ -43,19 +38,22 @@ export class AppComponent {
       this.editando.isAtiva = this.isAtiva;
       this.editando.tipo = this.tipo;
       this.editando.periodo = this.periodo;
-
+      this.limpar();
+      this.editar_ok = true;
 
     } else {
       this.ultimocodigo = this.ultimocodigo + 1;
       const d = new Disciplina(this.ultimocodigo, this.nome,  this.descricao, this.data, this.isAtiva, this.tipo, this.periodo);
       this.disciplinas.push(d);
+      this.limpar();
+      this.salvar_ok = true;
     }
 
 
-    this.limpar();
   }
 
   excluir(disciplina) {
+
     if (this.editando === disciplina) {
       alert('Você não pode excluir uma disciplina que está editando');
     } else {
@@ -64,10 +62,13 @@ export class AppComponent {
         const i = this.disciplinas.indexOf(disciplina);
         this.disciplinas.splice(i, 1);
       }
+      this.limparAlertas();
+      this.excluir_ok = true;
     }
   }
 
   editar(disciplina) {
+    this.limparAlertas();
     this.mostrando = true;
     /** replicar dados literais da disciplina a ser editada nas variáveis base*/
     this.codigo = disciplina.codigo;
@@ -96,15 +97,20 @@ export class AppComponent {
 
     this.editando = null;
     this.mostrando = false;
+    this.limparAlertas();
+  }
 
-
+  limparAlertas() {
+    this.salvar_ok = null;
+    this.editar_ok = null;
+    this.excluir_ok = null;
   }
 
   adicionar() {
     this.limpar();
+    this.isAtiva = true;
     this.mostrando = true;
     this.tipo = true;
-
   }
 
   tipoPrimario() {
@@ -114,11 +120,5 @@ export class AppComponent {
   tipoSecundario() {
     this.tipo = false;
   }
-
-
-
-
-
-
 
 }

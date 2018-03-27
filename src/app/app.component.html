@@ -15,7 +15,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">    {{hoje}}<span class="sr-only">(current)</span></a>
       </li>
    
 
@@ -26,6 +26,17 @@
   </div>
 </nav>
 
+<div *ngIf="salvar_ok " class="alert alert-success">
+  <strong>Sucesso!</strong> A disciplina foi cadastrada com sucesso.
+</div>
+
+<div *ngIf="editar_ok" class="alert alert-success">
+<strong>Sucesso!</strong> A disciplina foi atualizada com sucesso.
+</div>
+
+<div *ngIf="excluir_ok" class="alert alert-success">
+  <strong>Sucesso!</strong> A disciplina foi excluída com sucesso.
+</div>
 
 <table class="table table-bordered table-striped table-hover">
     <thead class="thead-dark">
@@ -64,10 +75,6 @@
     
   <h2>Cadastrar</h2>
   <p>Use este formulário para cadastrar ou editar uma disciplina.</p>
-  <div *ngIf="salvar_ok || editar_ok" class="alert alert-success">
-      <strong>Sucesso!</strong> A disciplina foi cadastrada ou atualizada
-      com sucesso.
-  </div>
 
   <form #cadastro="ngForm" (submit)="salvar()">
 
@@ -94,18 +101,19 @@
       </div>
 
       <div class="form-group">
-        <label for="data">Data</label><br>
-        <input type="Date" id="data" name="data" class="form-control"
+        <label for="data" >Data</label><br>
+        <input  type="Date" id="data" name="data" class="form-control" 
                [(ngModel)]="data"
                required>
     </div>
 
-    <div class="form-group">
-      <input type="checkbox" id="isAtiva" name="isAtiva" class="form-check-input"
-         [(ngModel)]="isAtiva" > 
-      <label class="form-check-label" for="isAtiva">Está ativa</label>
+    <div class="container">
+      <div class="form-group" >
+        <input type="checkbox" id="isAtiva" name="isAtiva" class="form-check-input" 
+          [(ngModel)]="isAtiva"  > 
+        <label class="form-check-label" for="isAtiva" >Está ativa</label>
+      </div>
     </div>
- 
 
     <div *ngIf="tipo"  class="container" >
 
@@ -143,9 +151,7 @@
         </div>
 
 
-
-
-      
+ 
 
       <div class="text-right">
           <button type="submit" class="btn btn-primary"
@@ -160,3 +166,5 @@
 
 
   </div>
+
+
