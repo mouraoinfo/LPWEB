@@ -30,7 +30,7 @@ export class AppComponent {
 
 
   disciplinas = [
-    new Disciplina( 1, 'Língua Portuguesa', 'O objetivo norteador da BNCC de Lín...', new Date(), true, true, '1'),
+    new Disciplina( 1, 'Língua Portuguesa', 'O objetivo norteador da BNCC de Lín...', new Date(), true, true, '5'),
 
   ];
     ultimocodigo = this.disciplinas.length;
@@ -42,6 +42,7 @@ export class AppComponent {
       this.editando.data = this.data;
       this.editando.isAtiva = this.isAtiva;
       this.editando.tipo = this.tipo;
+      this.editando.periodo = this.periodo;
 
 
     } else {
