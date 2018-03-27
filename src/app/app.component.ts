@@ -13,7 +13,7 @@ export class AppComponent {
   nome = null;
   descricao = null;
   data = null;
-  isAtiva = null;
+  isAtiva = false;
   tipo = null;
   periodo = null;
 
@@ -30,8 +30,7 @@ export class AppComponent {
 
 
   disciplinas = [
-    new Disciplina( 1, 'Língua Portuguesa', 'O objetivo norteador da BNCC de Lín...', this.getDate(), 'Sim', 'Principal', '1'),
-
+    new Disciplina( 1, 'Língua Portuguesa', 'O objetivo norteador da BNCC de Lín...', new Date(), true, 'Principal', '1'),
 
   ];
     ultimocodigo = this.disciplinas.length;
@@ -40,20 +39,18 @@ export class AppComponent {
     if (this.editando) {
       this.editando.nome = this.nome;
       this.editando.descricao = this.descricao;
+      this.editando.data = this.data;
+      this.editando.isAtiva = this.isAtiva;
 
 
     } else {
       this.ultimocodigo = this.ultimocodigo + 1;
-      const d = new Disciplina(this.ultimocodigo, this.nome,  this.descricao, this.getDate(), this.isAtiva, this.tipo, this.periodo);
+      const d = new Disciplina(this.ultimocodigo, this.nome,  this.descricao, this.data, this.isAtiva, this.tipo, this.periodo);
       this.disciplinas.push(d);
     }
 
 
-    this.codigo = null;
-    this.nome = null;
-    this.descricao = null;
-    this.editando = null;
-    this.cancelar();
+    this.limpar();
   }
 
   excluir(disciplina) {
@@ -69,6 +66,7 @@ export class AppComponent {
   }
 
   editar(disciplina) {
+    this.mostrando = true;
     /** replicar dados literais da disciplina a ser editada nas variáveis base*/
     this.codigo = disciplina.codigo;
     this.nome = disciplina.nome;
@@ -85,7 +83,7 @@ export class AppComponent {
   /** resetar dados iniciais da aplicação, nome, descricao, data, tipo, periodo
    * negar que está editando e adicionando
    */
-  cancelar() {
+  limpar() {
     this.codigo = null;
     this.nome = null;
     this.descricao = null;
@@ -95,23 +93,21 @@ export class AppComponent {
     this.periodo = null;
 
     this.editando = null;
+    this.mostrando = false;
     this.adicionando = false;
 
   }
 
   adicionar() {
-    this.adicionando = true;
-    this.data = this.getDate();
+    this.limpar();
+    this.mostrando = true;
+
   }
 
   naoadicionar() {
     this.adicionando = false;
   }
 
-  getDate() {
-    this.data = '26/03/2018';
-    return this.data;
-  }
 
 
 
