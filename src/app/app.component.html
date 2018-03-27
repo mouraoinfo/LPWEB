@@ -107,6 +107,26 @@
     </div>
  
 
+    <div *ngIf="tipo"  class="container" >
+
+      <div class="form-group"  >
+        <label><input type="radio" id = "tipo" name="tipo" (click)="tipoPrimario()"  checked >Principal</label>
+        </div>
+      <div class="form-group">
+        <label><input type="radio" id = "tipo" name="tipo"  (click)="tipoSecundario()"    >Secundária</label>
+      </div>
+    </div>
+
+    <div *ngIf="tipo == false"  class="container" >
+
+        <div class="form-group"  >
+          <label><input type="radio" id = "tipo" name="tipo" (click)="tipoPrimario()"   >Principal</label>
+          </div>
+        <div class="form-group">
+          <label><input type="radio" id = "tipo" name="tipo"  (click)="tipoSecundario()"  checked  >Secundária</label>
+        </div>
+      </div>
+
 
 
       <div class="text-right">
@@ -127,3 +147,4 @@
 
   </div>
 
+Tipo: {{tipo}}
