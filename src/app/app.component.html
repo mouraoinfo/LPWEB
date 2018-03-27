@@ -27,15 +27,15 @@
 </nav>
 
 <div *ngIf="salvar_ok " class="alert alert-success">
-  <strong>Sucesso!</strong> A disciplina foi cadastrada com sucesso.
+  <strong>Sucesso!</strong> A disciplina foi <strong>cadastrada</strong>  com sucesso.
 </div>
 
 <div *ngIf="editar_ok" class="alert alert-success">
-<strong>Sucesso!</strong> A disciplina foi atualizada com sucesso.
+<strong>Sucesso!</strong> A disciplina foi  <strong>atualizada</strong> com sucesso.
 </div>
 
 <div *ngIf="excluir_ok" class="alert alert-success">
-  <strong>Sucesso!</strong> A disciplina foi excluída com sucesso.
+  <strong>Sucesso!</strong> A disciplina foi <strong>excluída</strong> com sucesso.
 </div>
 
 <table class="table table-bordered table-striped table-hover">
@@ -79,7 +79,7 @@
   <form #cadastro="ngForm" (submit)="salvar()">
 
       <div class="form-group">
-          <label for="codigo" >Codigo  </label>
+          <label for="codigo" >Código  </label>
           <input class="form-group" id="disabledInput" type="text" placeholder="  {{codigo}}" disabled>
       </div>
 
