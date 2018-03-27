@@ -94,7 +94,7 @@ export class AppComponent {
 
     this.editando = null;
     this.mostrando = false;
-    this.adicionando = false;
+
 
   }
 
@@ -104,9 +104,7 @@ export class AppComponent {
 
   }
 
-  naoadicionar() {
-    this.adicionando = false;
-  }
+
 
 
 
