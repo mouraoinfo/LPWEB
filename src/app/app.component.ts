@@ -83,7 +83,7 @@ export class AppComponent {
     this.adicionando = true;
   }
 
-  /** resetar dados iniciais da aplicação, nome, descricao, data, tipo, periodo
+  /** resetar dados iniciais da aplicação, nome, descricao, data, tipo, periodo etc...
    * negar que está editando e adicionando
    */
   limpar() {
