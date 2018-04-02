@@ -16,7 +16,8 @@ export class AppComponent {
   isAtiva = false;
   tipo = null;
   periodo = null;
-  disciplinas = [ ];
+  disciplinas = this.getDisciplinasL();
+
   ultimocodigo = this.disciplinas.length;
   salvar_ok = null;
   editar_ok = null;
@@ -47,9 +48,10 @@ export class AppComponent {
       this.disciplinas.push(d);
       this.limpar();
       this.salvar_ok = true;
+     
     }
 
-
+    this.setLocalStorageDisciplinas(this.disciplinas);
   }
 
   excluir(disciplina) {
@@ -61,6 +63,7 @@ export class AppComponent {
           + disciplina.nome + '"?')) {
         const i = this.disciplinas.indexOf(disciplina);
         this.disciplinas.splice(i, 1);
+        this.setLocalStorageDisciplinas(this.disciplinas);
       }
       this.limparAlertas();
       this.excluir_ok = true;
@@ -120,5 +123,16 @@ export class AppComponent {
   tipoSecundario() {
     this.tipo = false;
   }
+
+  public getDisciplinasL(): Disciplina[] {
+    const localStorageItem = JSON.parse(localStorage.getItem('disciplinas'));
+    return localStorageItem == null ? [] : localStorageItem.disciplinas;
+  }
+
+  private setLocalStorageDisciplinas(disciplinas: Disciplina[]): void {
+    localStorage.setItem('disciplinas', JSON.stringify({ disciplinas: disciplinas }));
+  }
+
+
 
 }
