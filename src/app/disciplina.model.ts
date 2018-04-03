@@ -1,20 +1,22 @@
 
 export class Disciplina {
-    codigo: number;
+    matricula: number;
     nome: string;
     descricao: string;
     data: Date;
-    isAtiva: boolean;
+    veio: boolean;
     tipo: boolean;
-    periodo: string;
+    tipoocorrencia: string;
+    nomeresp: string;
 
-    constructor(codigo: number, nome: string,  descricao: string, data: Date, isAtiva: boolean, tipo: boolean, periodo: string) {
-      this.codigo = codigo;
+    // tslint:disable-next-line:max-line-length
+    constructor(matricula: number, nome: string,  descricao: string, data: Date, veio: boolean, tipo: boolean,  tipoocorrencia?: string, nomeresp?: string) {
+      this.matricula = matricula;
       this.nome = nome;
       this.descricao = descricao;
       this.data = data;
-      this.isAtiva = isAtiva;
+      this.veio = veio;
       this.tipo = tipo;
-      this.periodo = periodo;
+      this.tipoocorrencia = tipoocorrencia;
     }
 }

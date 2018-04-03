@@ -8,16 +8,18 @@ import { Professor } from './professor.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  /* Conjunto de variáveis básicas Dados de uma disciplina**/
-  codigo = null;
+  /* Conjunto de variáveis básicas Dados de uma ocorrencia**/
+  matricula = null;
   nome = null;
   descricao = null;
   data = null;
-  isAtiva = false;
+  veio = false;
   tipo = null;
-  periodo = null;
-  disciplinas = this.getDisciplinasL();
+  // periodo = null;
+  tipoocorrencia = null;
+  nomeresp = null;
 
+  disciplinas = this.getDisciplinasL();
   ultimocodigo = this.disciplinas.length;
   salvar_ok = null;
   editar_ok = null;
@@ -33,22 +35,26 @@ export class AppComponent {
 
   salvar() {
     if (this.editando) {
+      this.editando.matricula = this.matricula;
       this.editando.nome = this.nome;
       this.editando.descricao = this.descricao;
       this.editando.data = this.data;
-      this.editando.isAtiva = this.isAtiva;
+      this.editando.veio = this.veio;
       this.editando.tipo = this.tipo;
-      this.editando.periodo = this.periodo;
+      // this.editando.periodo = this.periodo;
+      this.editando.tipoocorrencia = this.tipoocorrencia;
+      this.editando.nomeresp = this.nomeresp;
       this.limpar();
       this.editar_ok = true;
 
     } else {
-      this.ultimocodigo = this.ultimocodigo + 1;
-      const d = new Disciplina(this.ultimocodigo, this.nome,  this.descricao, this.data, this.isAtiva, this.tipo, this.periodo);
+      // this.ultimocodigo = this.ultimocodigo + 1;
+      // tslint:disable-next-line:max-line-length
+      const d = new Disciplina(this.matricula, this.nome,  this.descricao, this.data, this.veio, this.tipo, this.tipoocorrencia, this.nomeresp);
       this.disciplinas.push(d);
       this.limpar();
       this.salvar_ok = true;
-     
+
     }
 
     this.setLocalStorageDisciplinas(this.disciplinas);
@@ -78,9 +84,11 @@ export class AppComponent {
     this.nome = disciplina.nome;
     this.descricao = disciplina.descricao;
     this.data = disciplina.data;
-    this.isAtiva = disciplina.isAtiva;
+    this.veio = disciplina.veio;
     this.tipo = disciplina.tipo;
-    this.periodo = disciplina.periodo;
+    // this.periodo = disciplina.periodo;
+    this.tipoocorrencia = disciplina.tipoocorrencia;
+    this.nomeresp = disciplina.nomeresp;
 
     this.editando = disciplina;
     this.adicionando = true;
@@ -94,9 +102,11 @@ export class AppComponent {
     this.nome = null;
     this.descricao = null;
     this.data = null;
-    this.isAtiva = null;
+    this.veio = null;
     this.tipo = null;
-    this.periodo = null;
+    // this.periodo = null;
+    this.tipoocorrencia = null;
+    this.nomeresp = null;
 
     this.editando = null;
     this.mostrando = false;
@@ -111,7 +121,7 @@ export class AppComponent {
 
   adicionar() {
     this.limpar();
-    this.isAtiva = true;
+    // this.veio = true;
     this.mostrando = true;
     this.tipo = true;
   }
