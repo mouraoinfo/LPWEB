@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Disciplina} from './disciplina.model';
 import { Professor } from './professor.model';
+import { Ocorrencia } from './ocorrencia';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +20,8 @@ export class AppComponent {
   tipoocorrencia = null;
   nomeresp = null;
 
-  disciplinas = this.getDisciplinasL();
-  ultimocodigo = this.disciplinas.length;
+  ocorrencias = this.getOcorrenciasL();
+
   salvar_ok = null;
   editar_ok = null;
   excluir_ok = null;
@@ -29,6 +30,7 @@ export class AppComponent {
   adicionando = false;
   selecionado = null;
   disciplina = null;
+  ocorrencia = null;
   editando = null;
   mostrando = false;
 
@@ -50,47 +52,49 @@ export class AppComponent {
     } else {
       // this.ultimocodigo = this.ultimocodigo + 1;
       // tslint:disable-next-line:max-line-length
-      const d = new Disciplina(this.matricula, this.nome,  this.descricao, this.data, this.veio, this.tipo, this.tipoocorrencia, this.nomeresp);
-      this.disciplinas.push(d);
+      // tslint:disable-next-line:max-line-length
+      const o = new Ocorrencia(this.matricula, this.nome,  this.descricao, this.data, this.veio, this.tipo, this.tipoocorrencia, this.nomeresp);
+      this.ocorrencias.push(o);
       this.limpar();
       this.salvar_ok = true;
 
     }
 
-    this.setLocalStorageDisciplinas(this.disciplinas);
+    this.setLocalStorageOcorrencias(this.ocorrencias);
   }
 
-  excluir(disciplina) {
+  excluir(ocorrencia) {
 
-    if (this.editando === disciplina) {
-      alert('Você não pode excluir uma disciplina que está editando');
+    if (this.editando === ocorrencia) {
+      alert('Você não pode excluir uma ocorrencia que está editando');
     } else {
-      if (confirm('Tem certeza que deseja excluir a disciplina "'
-          + disciplina.nome + '"?')) {
-        const i = this.disciplinas.indexOf(disciplina);
-        this.disciplinas.splice(i, 1);
-        this.setLocalStorageDisciplinas(this.disciplinas);
+      if (confirm('Tem certeza que deseja excluir a ocorrencia do aluno  "'
+          + ocorrencia.nome + '"?')) {
+
+        const i = this.ocorrencias.indexOf(ocorrencia);
+        this.ocorrencias.splice(i, 1);
+        this.setLocalStorageOcorrencias(this.ocorrencias);
       }
       this.limparAlertas();
       this.excluir_ok = true;
     }
   }
 
-  editar(disciplina) {
+  editar(ocorrencia) {
     this.limparAlertas();
     this.mostrando = true;
-    /** replicar dados literais da disciplina a ser editada nas variáveis base*/
-    this.codigo = disciplina.codigo;
-    this.nome = disciplina.nome;
-    this.descricao = disciplina.descricao;
-    this.data = disciplina.data;
-    this.veio = disciplina.veio;
-    this.tipo = disciplina.tipo;
+    /** replicar dados literais da ocorrência a ser editada nas variáveis base*/
+    this.matricula = ocorrencia.matricula;
+    this.nome = ocorrencia.nome;
+    this.descricao = ocorrencia.descricao;
+    this.data = ocorrencia.data;
+    this.veio = ocorrencia.veio;
+    this.tipo = ocorrencia.tipo;
     // this.periodo = disciplina.periodo;
-    this.tipoocorrencia = disciplina.tipoocorrencia;
-    this.nomeresp = disciplina.nomeresp;
+    this.tipoocorrencia = ocorrencia.tipoocorrencia;
+    this.nomeresp = ocorrencia.nomeresp;
 
-    this.editando = disciplina;
+    this.editando = ocorrencia;
     this.adicionando = true;
   }
 
@@ -98,7 +102,7 @@ export class AppComponent {
    * negar que está editando e adicionando
    */
   limpar() {
-    this.codigo = null;
+    this.matricula = null;
     this.nome = null;
     this.descricao = null;
     this.data = null;
@@ -126,23 +130,20 @@ export class AppComponent {
     this.tipo = true;
   }
 
-  tipoPrimario() {
-    this.tipo = true;
+
+  compareceu() {
+    this.veio = true;
   }
 
-  tipoSecundario() {
-    this.tipo = false;
+
+  public getOcorrenciasL(): Ocorrencia[] {
+    const localStorageItem = JSON.parse(localStorage.getItem('ocorrencias'));
+    return localStorageItem == null ? [] : localStorageItem.ocorrencias;
   }
 
-  public getDisciplinasL(): Disciplina[] {
-    const localStorageItem = JSON.parse(localStorage.getItem('disciplinas'));
-    return localStorageItem == null ? [] : localStorageItem.disciplinas;
+  private setLocalStorageOcorrencias(ocorrencias: Ocorrencia[]): void {
+    localStorage.setItem('ocorrencias', JSON.stringify({ ocorrencias: ocorrencias }));
   }
-
-  private setLocalStorageDisciplinas(disciplinas: Disciplina[]): void {
-    localStorage.setItem('disciplinas', JSON.stringify({ disciplinas: disciplinas }));
-  }
-
 
 
 }

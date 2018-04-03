@@ -1,5 +1,4 @@
-
-export class Disciplina {
+export class Ocorrencia {
     matricula: number;
     nome: string;
     descricao: string;
@@ -10,7 +9,7 @@ export class Disciplina {
     nomeresp: string;
 
     // tslint:disable-next-line:max-line-length
-    constructor(matricula: number, nome: string,  descricao: string, data: Date, veio: boolean, tipo: boolean,  tipoocorrencia?: string, nomeresp?: string) {
+    constructor(matricula: number, nome: string,  descricao: string, data: Date, veio: boolean, tipo?: boolean,  tipoocorrencia?: string, nomeresp?: string) {
       this.matricula = matricula;
       this.nome = nome;
       this.descricao = descricao;
