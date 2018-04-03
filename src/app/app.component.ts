@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Disciplina} from './disciplina.model';
 import { Professor } from './professor.model';
 import { Ocorrencia } from './ocorrencia';
+import { Aluno } from './aluno';
+
 
 @Component({
   selector: 'app-root',
@@ -9,9 +11,13 @@ import { Ocorrencia } from './ocorrencia';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  /* Conjunto de variáveis básicas Dados de uma ocorrencia**/
+  /* Conjunto de variáveis básicas Dados de um aluno**/
   matricula = null;
-  nome = null;
+  // nome = null;
+
+
+  /* Conjunto de variáveis básicas Dados de uma ocorrencia**/
+
   descricao = null;
   data = null;
   veio = false;
@@ -21,15 +27,16 @@ export class AppComponent {
   nomeresp = null;
 
   ocorrencias = this.getOcorrenciasL();
+  alunos = [new Aluno(123, 'Marcos Mourão'), new Aluno(124, 'Mari Caramello')];
 
   salvar_ok = null;
   editar_ok = null;
   excluir_ok = null;
 
   /* Dados parâmetros para manipulação da disciplina**/
+  aluno = new Aluno (1, 'Sem Nome');
   adicionando = false;
   selecionado = null;
-  disciplina = null;
   ocorrencia = null;
   editando = null;
   mostrando = false;
@@ -37,23 +44,25 @@ export class AppComponent {
 
   salvar() {
     if (this.editando) {
-      this.editando.matricula = this.matricula;
-      this.editando.nome = this.nome;
+      this.editando.aluno.matricula = this.aluno.matricula;
+      this.editando.aluno.nome = this.aluno.nome;
       this.editando.descricao = this.descricao;
       this.editando.data = this.data;
       this.editando.veio = this.veio;
       this.editando.tipo = this.tipo;
-      // this.editando.periodo = this.periodo;
+
+
       this.editando.tipoocorrencia = this.tipoocorrencia;
       this.editando.nomeresp = this.nomeresp;
       this.limpar();
       this.editar_ok = true;
 
     } else {
-      // this.ultimocodigo = this.ultimocodigo + 1;
+
       // tslint:disable-next-line:max-line-length
       // tslint:disable-next-line:max-line-length
-      const o = new Ocorrencia(this.matricula, this.nome,  this.descricao, this.data, this.veio, this.tipo, this.tipoocorrencia, this.nomeresp);
+
+      const o = new Ocorrencia(this.aluno,  this.descricao, this.data, this.veio, this.tipo, this.tipoocorrencia, this.nomeresp);
       this.ocorrencias.push(o);
       this.limpar();
       this.salvar_ok = true;
@@ -84,8 +93,9 @@ export class AppComponent {
     this.limparAlertas();
     this.mostrando = true;
     /** replicar dados literais da ocorrência a ser editada nas variáveis base*/
-    this.matricula = ocorrencia.matricula;
-    this.nome = ocorrencia.nome;
+    // this.matricula = ocorrencia.matricula;
+    // this.nome = ocorrencia.nome;
+    this.aluno = ocorrencia.aluno;
     this.descricao = ocorrencia.descricao;
     this.data = ocorrencia.data;
     this.veio = ocorrencia.veio;
@@ -102,8 +112,9 @@ export class AppComponent {
    * negar que está editando e adicionando
    */
   limpar() {
-    this.matricula = null;
-    this.nome = null;
+    // this.matricula = null;
+    // this.nome = null;
+    this.aluno = null;
     this.descricao = null;
     this.data = null;
     this.veio = null;
@@ -123,6 +134,8 @@ export class AppComponent {
     this.excluir_ok = null;
   }
 
+
+
   adicionar() {
     this.limpar();
     // this.veio = true;
@@ -134,7 +147,6 @@ export class AppComponent {
   compareceu() {
     this.veio = true;
   }
-
 
   public getOcorrenciasL(): Ocorrencia[] {
     const localStorageItem = JSON.parse(localStorage.getItem('ocorrencias'));

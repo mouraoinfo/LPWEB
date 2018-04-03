@@ -47,6 +47,8 @@
   </button>
 </div>
 
+
+
 <table *ngIf="mostrando === false" class="table table-bordered table-striped table-hover">
     <thead class="thead-dark">
       <tr>
@@ -61,9 +63,9 @@
     <tbody>
       <tr *ngFor="let ocorrencia of ocorrencias" >
         <th scope="row">{{ocorrencia.data}}</th>
-        <th scope="row">{{ocorrencia.matricula}}</th>
+        <th scope="row">{{ocorrencia.aluno.matricula}}</th>
         <td>
-            {{ocorrencia.nome}}
+            {{ocorrencia.aluno.nome}}
           </td>
         <td>
           {{ocorrencia.tipoocorrencia}}
@@ -91,21 +93,46 @@
 
   <form #cadastro="ngForm" (submit)="salvar()">
 
+    
+
+    <div class="form-group">
+      <label for="data" >Data</label><br>
+      <input  type="Date" id="data" name="data" class="form-control" 
+             [(ngModel)]="data"
+             required>
+    </div>
+
+
+    <div class="form-group">
+      <label for="aluno">Selecione o Aluno</label>
+       <select class="form-control" id="aluno" name ="aluno" [(ngModel)]="aluno"> 
+        <option *ngFor="let aluno of alunos" [ngValue]="aluno"> {{aluno.matricula}} - {{aluno.nome}} </option>
+      </select>
+    </div>
+
+
+
 
       <div class="form-group">
-          <label for="matricula">Matricula</label> 
-          <input type="text" id="matricula" name="matricula" class="form-control"
-                 [(ngModel)]="matricula"
-                 required>
-      </div>
+        <label for="matricula" >Matrícula  </label>
+        <input class="form-group" id="disabledInput" type="text" placeholder="  {{aluno.matricula}}" disabled>
+     </div>
 
+     <div class="form-group">
+      <label for="nome" >Nome  </label>
+      <input class="form-group" id="disabledInput" type="text" placeholder="  {{aluno.nome}}" disabled>
+    </div>
+  
 
-      <div class="form-group">
-          <label for="nome">Nome</label> 
-          <input type="text" id="nome" name="nome" class="form-control"
-                 [(ngModel)]="nome"
-                 required>
-      </div>
+        <div class="form-group">
+            <label for="tipoocorrencia">Selecione o Tipo de Ocorrência</label>
+            <select class="form-control" id="tipoocorrencia" name ="tipoocorrencia" [(ngModel)]="tipoocorrencia">
+              <option> indisciplina em sala de aula</option>
+              <option> comportamento inadequado</option>
+              <option> baixo indice de rendimento</option>
+              <option> indicação de atenção por assunto familiar, psicológico ou social</option>
+            </select>
+          </div>
 
       <div class="form-group">
           <label for="descricao">Observação</label><br>
@@ -114,25 +141,10 @@
                     cols="70" rows="5"></textarea>
       </div>
 
-      <div class="form-group">
-        <label for="data" >Data</label><br>
-        <input  type="Date" id="data" name="data" class="form-control" 
-               [(ngModel)]="data"
-               required>
-    </div>
 
 
-    <div class="form-group">
-        <label for="tipoocorrencia">Selecione o Tipo de Ocorrência</label>
-        <select class="form-control" id="tipoocorrencia" name ="tipoocorrencia" [(ngModel)]="tipoocorrencia">
-          <option> indisciplina em sala de aula</option>
-          <option> comportamento inadequado</option>
-          <option> baixo indice de rendimento</option>
-          <option> indicação de atenção por assunto familiar, psicológico ou social</option>
-        </select>
-      </div>
 
-
+ 
 
     <div class="container">
       <div class="form-group" >
